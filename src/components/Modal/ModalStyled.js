@@ -32,13 +32,21 @@ export const ModalContainer = styled.div`
   }
 `;
 export const ModalContent = styled.div`
-  animation: show 0.5s ease-in-out;
+  animation: show 0.6s ease-in-out;
   @keyframes show {
     0% {
       opacity: 0;
     }
     100% {
       opacity: 1;
+    }
+  }
+  @keyframes hide {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
   }
 `;
@@ -56,8 +64,20 @@ export const ModalTitle = styled.h2`
 export const ModalIconWrapper = styled.div`
   cursor: pointer;
   display: flex;
+  animation: jump infinite 2s ease-in-out;
   svg {
     margin: auto;
+  }
+  @keyframes jump {
+    0% {
+      transform: translate(0, 5px);
+    }
+    50% {
+      transform: translate(0, -5px);
+    }
+    100% {
+      transform: translate(0, 5px);
+    }
   }
 `;
 export const UpIcon = styled(UpIconSrc)``;

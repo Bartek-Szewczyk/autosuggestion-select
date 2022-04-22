@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchInputContainer, SearchInputText } from "./SearchInputStyles";
-
-const Input = () => {
+import { getData } from "../../services/Api/request";
+const Input = ({ setData }) => {
   const [text, setText] = useState("");
   function handleChangeText(e) {
     setText(e.target.value);
   }
+  const fetchdata = async (text) => {
+    if (text.length > 0) {
+      const data = await getData(text);
+      setData(data);
+    }
+  };
+  useEffect(() => {
+    fetchdata(text);
+  }, [text]);
+
   return (
     <SearchInputContainer>
       <SearchInputText

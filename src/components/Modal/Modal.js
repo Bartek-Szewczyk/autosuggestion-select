@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Input from "../SearchInput/SearchInput";
+import SearchInput from "../SearchInput/SearchInput";
 import {
   DownIcon,
   ModalContainer,
@@ -12,6 +12,7 @@ import {
 
 const Modal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState();
   const Modal = useRef();
   const Content = useRef();
   const handleClickOutside = (event) => {
@@ -60,7 +61,7 @@ const Modal = () => {
 
       {isOpen && (
         <ModalContent ref={Content}>
-          <Input />
+          <SearchInput setData={setData} />
         </ModalContent>
       )}
     </ModalContainer>

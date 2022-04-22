@@ -9,4 +9,5 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: ${color.primary};
 `;

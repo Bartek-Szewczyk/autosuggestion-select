@@ -118,7 +118,9 @@ const Modal = () => {
               selectedData={selected}
             />
           )}
-          {text?.length > 0 && <ResetButton handleClick={handleReset} />}
+          {(text?.length > 0 || selected.length > 0) && (
+            <ResetButton handleClick={handleReset} />
+          )}
         </ModalContent>
       )}
     </ModalContainer>

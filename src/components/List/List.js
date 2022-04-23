@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import {
   ListContainer,
   ItemText,
@@ -8,12 +8,10 @@ import {
 } from "./ListStyled";
 
 const List = ({ data, selected, selectedData }) => {
-  const itemRef = useRef();
-  const [selectedItem, setSelectedItem] = useState([]);
   const ListItem = ({ item }) => {
     return (
-      <ItemContainer onClick={(e) => select(e, item)}>
-        <ItemTextWrapper>
+      <ItemContainer>
+        <ItemTextWrapper onClick={(e) => select(e, item)}>
           <ItemText>{item.name}</ItemText>
         </ItemTextWrapper>
       </ItemContainer>
@@ -22,7 +20,7 @@ const List = ({ data, selected, selectedData }) => {
   const ItemSelected = ({ item }) => {
     return (
       <ItemContainer>
-        <ItemTextWrapper>
+        <ItemTextWrapper onClick={(e) => unSelect(e, item)}>
           <ItemText>{item.name}</ItemText>
           <TickIcon />
         </ItemTextWrapper>
@@ -30,9 +28,10 @@ const List = ({ data, selected, selectedData }) => {
     );
   };
   const select = (e, item) => {
-    setSelectedItem([item]);
     selected((oldArray) => [...oldArray, item]);
-    console.log(selectedItem);
+  };
+  const unSelect = (e, item) => {
+    selected((oldArray) => oldArray.filter((i) => i.name !== item.name));
   };
 
   return (
@@ -40,10 +39,13 @@ const List = ({ data, selected, selectedData }) => {
       {selectedData.map((item, index) => (
         <ItemSelected key={index + "si"} item={item} />
       ))}
-      {data?.map(
-        (item, index) =>
-          !selectedItem.includes(item) && <ListItem key={index} item={item} />
-      )}
+      {data?.map((item, index) => {
+        if (!selectedData.find((i) => i.name === item.name)) {
+          return <ListItem key={index + "li"} item={item} />;
+        } else {
+          return null;
+        }
+      })}
     </ListContainer>
   );
 };

@@ -12,9 +12,9 @@ function TickIcon({ fill = "#fff" }) {
       <path
         d="M10 24L20 34L40 14"
         stroke={fill}
-        stroke-width="4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

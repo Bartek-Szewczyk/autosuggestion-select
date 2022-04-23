@@ -14,12 +14,10 @@ export const SearchInputText = styled.input`
   outline: 0;
   font-size: 18px;
   color: ${color.primary};
+  padding-left: 10px;
   background-color: ${color.background};
   &:focus {
     border: 1px solid ${color.primary};
     outline: 0;
   }
-  /* &::placeholder {
-    color: ${({ theme }) => theme.inputColor};
-  } */
 `;

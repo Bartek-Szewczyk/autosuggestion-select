@@ -40,6 +40,7 @@ const Modal = () => {
     };
   });
   const handleOpen = () => {
+    setText("");
     if (!isOpen) {
       Modal.current.style.animation = "open 0.5s ease-in-out";
       Modal.current.style.height = "450px";
@@ -64,6 +65,7 @@ const Modal = () => {
   };
   useEffect(() => {
     setCount(selected.length);
+    console.log(selected);
   }, [selected]);
   const selectedHandler = (data) => {
     setSelected(data);

@@ -13,23 +13,27 @@ export const ModalContainer = styled.div`
   @keyframes open {
     0% {
       height: 70px;
-      width: 200px;
+      width: 210px;
     }
     100% {
-      height: 250px;
-      width: 300px;
+      height: 450px;
+      width: 350px;
     }
   }
   @keyframes close {
     0% {
-      height: 250px;
-      width: 300px;
+      height: 450px;
+      width: 350px;
     }
     100% {
       height: 70px;
-      width: 200px;
+      width: 210px;
     }
   }
+`;
+export const ModalCounter = styled.p`
+  font-size: 22px;
+  margin-left: 5px;
 `;
 export const ModalContent = styled.div`
   animation: show 0.6s ease-in-out;

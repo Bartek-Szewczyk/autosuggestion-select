@@ -21,7 +21,9 @@ const List = ({ data, selected, selectedData }) => {
     return (
       <ItemContainer>
         <ItemTextWrapper onClick={(e) => unSelect(e, item)}>
-          <ItemText>{item.name}</ItemText>
+          <ItemText selected bold>
+            {item.name}
+          </ItemText>
           <TickIcon />
         </ItemTextWrapper>
       </ItemContainer>

@@ -10,26 +10,7 @@ export const ModalContainer = styled.div`
   height: 70px;
   width: 200px;
   background: ${color.backgroundContainer};
-  @keyframes open {
-    0% {
-      height: 70px;
-      width: 210px;
-    }
-    100% {
-      height: 450px;
-      width: 350px;
-    }
-  }
-  @keyframes close {
-    0% {
-      height: 450px;
-      width: 350px;
-    }
-    100% {
-      height: 70px;
-      width: 210px;
-    }
-  }
+  transition: all 0.5s ease-in-out;
 `;
 export const ModalCounter = styled.p`
   font-size: 22px;

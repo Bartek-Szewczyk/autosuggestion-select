@@ -37,7 +37,7 @@ export const ItemContainer = styled.div`
 `;
 export const ItemTextWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 95%;
   svg {
     width: 30px;
@@ -45,6 +45,7 @@ export const ItemTextWrapper = styled.div`
   }
 `;
 export const ItemText = styled.p`
-  width: 75%;
+  width: ${(props) => (props.selected ? "80%" : "95%")};
+  font-weight: ${(pros) => (pros.bold ? "bold" : "normal")};
 `;
 export const TickIcon = styled(TickIconSrc)``;

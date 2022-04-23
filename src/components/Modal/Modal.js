@@ -19,6 +19,7 @@ const Modal = () => {
   const [text, setText] = useState();
   const [count, setCount] = useState(0);
   const [selected, setSelected] = useState([]);
+  const [showList, setShowList] = useState(false);
   const Modal = useRef();
   const Content = useRef();
   const handleClickOutside = (event) => {
@@ -42,12 +43,10 @@ const Modal = () => {
   const handleOpen = () => {
     setText("");
     if (!isOpen) {
-      Modal.current.style.animation = "open 0.5s ease-in-out";
-      Modal.current.style.height = "450px";
+      Modal.current.style.height = "170px";
       Modal.current.style.width = "350px";
       setIsOpen(!isOpen);
     } else {
-      Modal.current.style.animation = "close 0.5s ease-in-out";
       Modal.current.style.height = "70px";
       Modal.current.style.width = "210px";
       Content.current.style.animation = "hide 0.3s ease-in-out";
@@ -70,6 +69,31 @@ const Modal = () => {
   const selectedHandler = (data) => {
     setSelected(data);
   };
+  const resize = () => {
+    if ((data?.length > 0 && isOpen) || (selected.length > 0 && isOpen)) {
+      Modal.current.style.transition = "all 0.2s ease-in-out";
+      Modal.current.style.height = "450px";
+      Modal.current.style.transition = "all 0.5s ease-in-out";
+      setTimeout(() => {
+        setShowList(true);
+      }, 200);
+    } else if (isOpen && text?.length > 0) {
+      setShowList(false);
+      Modal.current.style.height = "170px";
+      Modal.current.style.transition = "all 0.5s ease-in-out";
+    } else if (isOpen) {
+      setShowList(false);
+      Modal.current.style.height = "120px";
+      Modal.current.style.transition = "all 0.5s ease-in-out";
+    } else {
+      setShowList(false);
+      Modal.current.style.height = "70px";
+      Modal.current.style.transition = "all 0.5s ease-in-out";
+    }
+  };
+  useEffect(() => {
+    resize();
+  }, [data, selected, isOpen]);
   return (
     <ModalContainer ref={Modal}>
       <ModalHeader>
@@ -87,16 +111,14 @@ const Modal = () => {
             setGlobalText={setText}
             changeText={text}
           />
-          {data && (
-            <>
-              <List
-                data={data}
-                selected={selectedHandler}
-                selectedData={selected}
-              />
-              <ResetButton handleClick={handleReset} />
-            </>
+          {showList && (
+            <List
+              data={data}
+              selected={selectedHandler}
+              selectedData={selected}
+            />
           )}
+          {text?.length > 0 && <ResetButton handleClick={handleReset} />}
         </ModalContent>
       )}
     </ModalContainer>

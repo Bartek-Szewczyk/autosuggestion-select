@@ -8,20 +8,20 @@ const Input = ({ setData, setGlobalText, changeText }) => {
     setGlobalText(e.target.value);
   }
 
-  const fetchdata = async (text) => {
-    if (text?.length > 1) {
-      const data = await getData(text);
-      setData(data);
-    } else {
-      setData([]);
-    }
-  };
   useEffect(() => {
     setText(changeText);
   }, [changeText]);
   useEffect(() => {
+    const fetchdata = async (text) => {
+      if (text?.length > 1) {
+        const data = await getData(text);
+        setData(data);
+      } else {
+        setData([]);
+      }
+    };
     fetchdata(text);
-  }, [text]);
+  }, [setData, text]);
 
   return (
     <SearchInputContainer>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import List from "../List/List";
 import ResetButton from "../ResetButton/ResetButton";
 import SearchInput from "../SearchInput/SearchInput";
@@ -69,7 +69,7 @@ const Modal = () => {
   const selectedHandler = (data) => {
     setSelected(data);
   };
-  const resize = () => {
+  const resize = useCallback(() => {
     if ((data?.length > 0 && isOpen) || (selected.length > 0 && isOpen)) {
       Modal.current.style.transition = "all 0.2s ease-in-out";
       Modal.current.style.height = "450px";
@@ -90,10 +90,10 @@ const Modal = () => {
       Modal.current.style.height = "70px";
       Modal.current.style.transition = "all 0.5s ease-in-out";
     }
-  };
+  }, [data, isOpen, selected, text]);
   useEffect(() => {
     resize();
-  }, [data, selected, isOpen]);
+  }, [data, selected, isOpen, resize]);
   return (
     <ModalContainer ref={Modal}>
       <ModalHeader>
